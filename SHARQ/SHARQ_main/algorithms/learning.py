@@ -5,7 +5,7 @@ from collections import OrderedDict
 from tensorboardX import SummaryWriter
 import queue
 from preprocess.hierarchical import TreeNodes
-from evaluation.labour import compute_level_loss, get_recon_error
+from evaluation.metrics import compute_level_loss, get_recon_error
 from algorithms.quantile import QuantileLoss
 from algorithms.MinT import recon_base_forecast
 from algorithms.ERM import unbiased_recon

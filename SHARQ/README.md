@@ -1,6 +1,6 @@
 # SHARQ
 
-This repository is an implementation of the [paper](https://arxiv.org/abs/2102.12612) **Simultaneously Reconciled Quantile Forecasting of Hierarchically Related Time Series**, AISTATS 2021, as well as mixture of expert methods under development.
+This repository is an implementation of the [paper](https://arxiv.org/abs/2102.12612) **Simultaneously Reconciled Quantile Forecasting of Hierarchically Related Time Series**, AISTATS 2021.
 
 ## Synopsis
 

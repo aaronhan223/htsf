@@ -1,0 +1,10 @@
+{
+    "d": 16,
+    "num_layers": 6,
+    "layer_dims": [120, 120, 60, 60, 10, 1],
+    "nonlinear": "relu",
+    "learning_rate": 1e-4,
+    "num_epochs": 600,
+    "quantiles": [0.95, 0.7, 0.3, 0.05],
+    "type": "median"
+}
