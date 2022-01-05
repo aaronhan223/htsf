@@ -131,3 +131,4 @@ dmypy.json
 # other stuffs
 .idea
 .vscode
+.DS_Store
