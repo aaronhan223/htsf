@@ -70,7 +70,7 @@ class mecats:
     def __init__(self, DATASET='User_specified', DATA=None, IF_TIME_SERIES=True, FORECAST_GRANULARITY='D', IS_HIERARCHICAL=False,
                  FORECAST_HORIZON=1, HIERARCHY_GRAPH=None, MODELS=None, RECON='base', ONLINE=0,
                  CATEGORICAL_FEATURES=None, QUANTILE=True, VERBOSE=False, GPU=0, SEED=78712):
-
+        
         self.IF_TIME_SERIES = IF_TIME_SERIES
         self.FORECAST_GRANULARITY = FORECAST_GRANULARITY
         self.IS_HIERARCHICAL = IS_HIERARCHICAL
