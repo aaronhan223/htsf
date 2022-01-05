@@ -9,13 +9,13 @@ Run MECATS using the following command:
 python run_mecats.py
 ```
 The following are related files of the program:
- - All quantitative results, hyper-parameters of experiments, and historical records are saved in the log file under `/save/`
- - All figures shown in the paper are saved under `/results/`
- - All configurable parameters can be found under `/parameters/`
- - Dataset used for experiment can be found under `/data/`
+ - All quantitative results, hyper-parameters of experiments, and historical records are saved in the log file under `save`
+ - All figures shown in the paper are saved under `results`
+ - All configurable parameters can be found under [`parameters`](./parameters)
+ - Dataset used for experiment can be found under [`data`](./data)
 
 ## Config
-To change the reconciliation method, modify RECON in mecats.json. Avaiable choices:
+To change the reconciliation method, modify RECON in [`mecats.json`](./parameters/mecats.json). Avaiable choices:
 ```
 ["sharq", "base", "mint_shr", "mint_sam", "mint_wls", "ols"].
 ```
