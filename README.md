@@ -22,7 +22,7 @@ This repository compares forecasting performance across benchmarked hierarchical
 ### Input Format
 HTS is a special type of multi-variate time series which has a predefined hierarchical structure between each variant. Below is an example of HTS with 13 variants, each variant could be e.g., a univariate time series that describes sales record at the corresponding level.
 
-<img src="./SHARQ/hierarchy.png" width=900>
+<img src="./SHARQ/hierarchy.png" width=800>
 
 
 Input format on this example:
