@@ -3,7 +3,7 @@
 This repository is an implementation of the [paper](https://arxiv.org/abs/2102.12612) **Simultaneously Reconciled Quantile Forecasting of Hierarchically Related Time Series**, AISTATS 2021.
 
 ## Running Instructions
-Run SHARQ using the following command:
+Under [`SHARQ_main`](./SHARQ_main), run SHARQ using the following command:
 ```
 python run_sharq.py
 ```
