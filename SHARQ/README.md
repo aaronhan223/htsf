@@ -2,33 +2,13 @@
 
 This repository is an implementation of the [paper](https://arxiv.org/abs/2102.12612) **Simultaneously Reconciled Quantile Forecasting of Hierarchically Related Time Series**, AISTATS 2021.
 
-## Synopsis
-
-### Requirements
-The following packages are required to run the program:
-- Pytorch 1.0+.
-- Pandas
-- rpy2
-- matplotlib
-- tqdm
-
-### Running Instructions
-
-#### Create running environment
-To setup conda environment for running the program, use the following command:
+## Running Instructions
+Run SHARQ using the following command:
 ```
-conda env create -f htsf.yml
-```
-Activate the new environment:
-```
-conda activate htsf
-```
-Verify that the new environment was installed correctly:
-```
-conda env list
+python run_sharq.py
 ```
 
-## Implementation Details
+<!-- ## Implementation Details
 The program compares forecasting performance across benchmarked HTS algorithms on various real-world and simulated hierarchiclly related time series data.
 The data set contains both temporal and cross-sectional hierarchies.
 ### Data set
@@ -36,7 +16,7 @@ The data set contains both temporal and cross-sectional hierarchies.
 - [Predict Future Sales](https://www.kaggle.com/c/competitive-data-science-predict-future-sales/data)
 - [Web Traffic Time Series Forecasting](https://www.kaggle.com/c/web-traffic-time-series-forecasting)
 - [M3 Competition Data](https://forecasters.org/resources/time-series-data/m3-competition/)
-- [AEdemand Data](https://cran.r-project.org/web/packages/thief/thief.pdf)
+- [AEdemand Data](https://cran.r-project.org/web/packages/thief/thief.pdf) -->
 
 <!-- ### Forecasting Algorithms
 - Long Short Term Networks (LSTNet)
@@ -46,7 +26,7 @@ The data set contains both temporal and cross-sectional hierarchies.
 - Auto-ARIMA
 - Recurrent Neural Networks (RNN) -->
 
-### Reconciliation Methods
+<!-- ### Reconciliation Methods
 - Bottom up (BU) method.
 - [Trace Minimization (MinT)](https://robjhyndman.com/papers/MinT.pdf) including shrinkage, sampling and OLS estimators.
 - [Empirical risk minimization (ERM)](http://souhaib-bentaieb.com/pdf/2019_KDD.pdf).
@@ -59,7 +39,7 @@ The data set contains both temporal and cross-sectional hierarchies.
 - [`algorithms`](algorithms): implementation of the list of forecasting models and reconciliation methods.
 - [`data`](data): hierarchical time series data sets.
 - [`preprocess`](preprocess): preprocess raw time series data from the web, define hierarchical graph structure, etc.
-- [`evaluation`](evaluation): evaluation metrics and visualization for out of sample forecasting.
+- [`evaluation`](evaluation): evaluation metrics and visualization for out of sample forecasting. -->
 
 ## Config
 To change the reconciliation method, assign TRAINING_METHOD with different input string. The list

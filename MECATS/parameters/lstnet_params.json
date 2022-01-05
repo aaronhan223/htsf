@@ -4,6 +4,6 @@
     "h": 1,
     "normalize": 0,
     "batch_size": 16,
-    "num_epoch": 1000,
+    "num_epoch": 100,
     "model_dir": "./save/lstnet"
 }

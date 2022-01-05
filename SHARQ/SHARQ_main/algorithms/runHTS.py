@@ -1,6 +1,6 @@
 import pandas as pd
 from algorithms.htsprophet.hts import hts
-from evaluation.labour import get_multistep_consistency, get_multistep_mae
+from evaluation.metrics import get_multistep_consistency, get_multistep_mae
 import datetime
 import numpy as np
 import pdb

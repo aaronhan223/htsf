@@ -133,8 +133,8 @@ class MoE_Learner:
         self.date = date
         self.nodes = nodes
         self.node_list = node_list
-        self.val = params['sharq'].valid_split
-        self.te = params['sharq'].test_split
+        self.val = params['mecats'].valid_split
+        self.te = params['mecats'].test_split
         self.params_set = params
         self.params = params['gating_network']
         self.window = self.params.window
@@ -151,7 +151,7 @@ class MoE_Learner:
         length = self.data.shape[0]
         self.valid_range = range(int((1 - self.te - self.val) * length), int((1 - self.te) * length))
         self.test_range = range(int((1 - self.te) * length), length)
-        valid_start = range(self.valid_range[0] - params['sharq'].FORECAST_HORIZON, self.valid_range[0])
+        valid_start = range(self.valid_range[0] - params['mecats'].FORECAST_HORIZON, self.valid_range[0])
         if cuda:
             self.device = 'cuda:{}'.format(torch.cuda.current_device())
         else:
@@ -176,7 +176,7 @@ class MoE_Learner:
                     childs = TreeNodes(self.nodes, name=name).get_child()
                     self.fit(self.optimizers, self.gns, name, childs=childs)
             
-            if self.params_set['sharq'].QUANTILE and self.params_set['sharq'].RECON == 'sharq':
+            if self.params_set['mecats'].QUANTILE and self.params_set['mecats'].RECON == 'sharq':
                 logger.info('<-------------Train Unvertainty Wrapper------------->')
                 quantiles = self.q_net_params.quantiles
                 qloss = QuantileLoss(quantiles).to(self.device)
@@ -226,7 +226,7 @@ class MoE_Learner:
         set_range = range(self.window, int((1 - self.te - self.val) * len(data)))
         gating_params = self.params_set['gating_network']
 
-        if 'childs' in kwargs and self.params_set['sharq'].RECON == 'sharq':
+        if 'childs' in kwargs and self.params_set['mecats'].RECON == 'sharq':
             childs = kwargs.pop('childs')
             gn_input = prepare_data(set_range, self.data[childs], self.window)
             regularization = True
@@ -273,7 +273,7 @@ class MoE_Learner:
         level = TreeNodes(self.nodes, name=name).get_levels()
         self.weights[name] = self.all_weights[-1, :].numpy()
         legend = True if name == '0' else False
-        utils.plot_weights(self.all_weights.numpy(), self.params.num_epochs, level, name, self.dataset, self.params_set['sharq'].RECON, legend)
+        utils.plot_weights(self.all_weights.numpy(), self.params.num_epochs, level, name, self.dataset, self.params_set['mecats'].RECON, legend)
     
     def online_update(self, params):
         model_dict, gn, optimizer = self.models['0'], self.gns['0'], self.optimizers['0']
@@ -281,7 +281,7 @@ class MoE_Learner:
         # larger learning rate since fewer epochs...
         # self.params.learning_rate = self.params.learning_rate * 10
         MSE = nn.MSELoss()
-        h = self.params_set['sharq'].FORECAST_HORIZON
+        h = self.params_set['mecats'].FORECAST_HORIZON
         test_length, m = len(test), 0
         length = len(self.data['0'])
         test_start = range(self.test_range[m] - h, self.test_range[m])
@@ -368,7 +368,7 @@ class MoE_Learner:
         return step_loss.numpy(), len(step_range)
 
     def get_data_loader(self, m):
-        gating_range = range(self.test_range[m] - self.params_set['sharq'].FORECAST_HORIZON - self.params_set['gating_network'].batch_size + 1, self.test_range[m])
+        gating_range = range(self.test_range[m] - self.params_set['mecats'].FORECAST_HORIZON - self.params_set['gating_network'].batch_size + 1, self.test_range[m])
         gn_input = prepare_data(gating_range, self.data['0'], self.window)
         dataset = utils.GatingDataset(gn_input)
         train_loader = DataLoader(dataset, batch_size=self.params_set['gating_network'].batch_size, num_workers=4, shuffle=False, drop_last=True)
@@ -415,8 +415,8 @@ class MoE_Learner:
     def test_pred(self):
         test = self.data.iloc[self.test_range]
         pred_dict, quantile_dict = {}, {}
-        method = self.params_set['sharq'].RECON
-        test_start = range(self.test_range[0] - self.params_set['sharq'].FORECAST_HORIZON, self.test_range[0])
+        method = self.params_set['mecats'].RECON
+        test_start = range(self.test_range[0] - self.params_set['mecats'].FORECAST_HORIZON, self.test_range[0])
         if method == 'sharq':
             for node in self.node_list:
                 logger.info('Predict on test set for node {}'.format(node))
@@ -424,7 +424,7 @@ class MoE_Learner:
                 weights = np.expand_dims(self.weights[node], 0)
                 combined_pred = np.matmul(weights, preds)[0]
                 pred_dict[node] = combined_pred
-                if self.params_set['sharq'].QUANTILE:
+                if self.params_set['mecats'].QUANTILE:
                     net, data = self.q_nets[node], self.data[node]
                     # here we use the most recent records for quantile predictions
                     pred_length, test_start_point = combined_pred.shape[0], int((1 - self.te) * len(data))
@@ -493,10 +493,10 @@ class MoE_Learner:
 
         logger.info('Updating LSTNet Models...')
         train_lstn(data=data, lstn_params=lstnet_params, tr=(1 - self.te), val=0., 
-                   cuda=self.cuda, method=self.params_set['sharq'].RECON, verbose=True, init=lstnet)
+                   cuda=self.cuda, method=self.params_set['mecats'].RECON, verbose=True, init=lstnet)
 
         logger.info('Load updated LSTNet model...')
-        with open(os.path.join(lstnet_params.model_dir, '{}_{}_LSTNet.pt'.format(self.params_set['sharq'].RECON, lstnet_params.dataset)), 'rb') as f:
+        with open(os.path.join(lstnet_params.model_dir, '{}_{}_LSTNet.pt'.format(self.params_set['mecats'].RECON, lstnet_params.dataset)), 'rb') as f:
             LSTNet = torch.load(f)
 
         logger.info('Restoring updated DeepAR parameters...')
@@ -515,11 +515,11 @@ class fitModel:
         self.cuda = cuda
         self.name = name
         self.fbprophet = Prophet()
-        self.sharq_params = params['sharq']
-        train_split = self.sharq_params.train_split
+        self.mecats_params = params['mecats']
+        train_split = self.mecats_params.train_split
         self.val = 0.1
-        assert params['sharq'].valid_split >= self.val
-        assert params['sharq'].valid_split >= params['sharq'].test_split
+        assert params['mecats'].valid_split >= self.val
+        assert params['mecats'].valid_split >= params['mecats'].test_split
         self.tr = train_split - self.val
         self.train = pd.Series(data[:int((self.tr + self.val) * len(data))], name='y')
         self.date_train = date[:int((self.tr + self.val) * len(date))]
@@ -531,8 +531,8 @@ class fitModel:
         self.deepar_params = params['deepar']
         self.deepar_params.relative_metrics = False
         self.deepar_params.dataset = dataset
-        self.deepar_params.method = self.sharq_params.RECON
-        self.deepar_params.train_window = int(1.2 * params['sharq'].valid_split * len(data))
+        self.deepar_params.method = self.mecats_params.RECON
+        self.deepar_params.train_window = int(1.2 * params['mecats'].valid_split * len(data))
         self.deepar_params.valid_window = self.deepar_params.train_window
         self.deepar_params.predict_steps = int(self.val * len(data))
         self.deepar_params.predict_start = self.deepar_params.valid_window - self.deepar_params.predict_steps
@@ -575,10 +575,10 @@ class fitModel:
 
         logger.info('Training LSTNet Models...')
         train_lstn(data=self.data, lstn_params=self.lstnet_params, tr=self.tr, val=self.val,
-                   cuda=self.cuda, method=self.sharq_params.RECON, verbose=True)
+                   cuda=self.cuda, method=self.mecats_params.RECON, verbose=True)
 
         logger.info('Load saved LSTNet model...')
-        with open(os.path.join(self.lstnet_params.model_dir, '{}_{}_LSTNet.pt'.format(self.sharq_params.RECON, self.lstnet_params.dataset)), 'rb') as f:
+        with open(os.path.join(self.lstnet_params.model_dir, '{}_{}_LSTNet.pt'.format(self.mecats_params.RECON, self.lstnet_params.dataset)), 'rb') as f:
             LSTNet = torch.load(f)
 
         logger.info('Resotring DeepAR parameters...')

@@ -132,3 +132,8 @@ dmypy.json
 .idea
 .vscode
 .DS_Store
+
+# folders
+/SHARQ/SHARQ_main/runs
+/MECATS/results
+/MECATS/save
