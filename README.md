@@ -3,7 +3,7 @@
 This repository contains implementations of hierarchical time series forecasting methods in the following papers:
 
 - [Simultaneously Reconciled Quantile Forecasting of Hierarchically Related Time Series](https://arxiv.org/pdf/2102.12612.pdf)
-- [Mixture-of-Experts for Quantile Forecasts of Aggregated Time Series](https://arxiv.org/pdf/2112.11669.pdf)
+- Dynamic Combination of Heterogeneous Experts for Hierarchical Time Series (in submission)
 
 ## Running Instructions
 

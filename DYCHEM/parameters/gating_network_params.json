@@ -1,0 +1,9 @@
+{
+    "recurrent_hidden_dim": 1,
+    "layer_dim": 3,
+    "batch_size": 16,
+    "linear_hidden_dim": 60,
+    "learning_rate": 1e-4,
+    "num_epochs": 1200,
+    "Lambda": 0.1
+}

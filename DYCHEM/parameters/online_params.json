@@ -1,0 +1,10 @@
+{
+    "batch_size": 1,
+    "epoch": 5,
+    "enable_cp": 0,
+    "hazard": 1e-3,
+    "prior_mean": 0,
+    "prior_var": 2,
+    "observe_var": 1,
+    "tau": 2
+}
