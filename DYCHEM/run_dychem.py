@@ -2,7 +2,7 @@ from mecats import mecats
 from preprocess import utils
 import os
 
-params = utils.Params(os.path.join('parameters', 'mecats.json'))
+params = utils.Params(os.path.join('parameters', 'dychem.json'))
 mecats_model = mecats(DATASET=params.DATASET, 
                       FORECAST_GRANULARITY=params.FORECAST_GRANULARITY,
                       IS_HIERARCHICAL=params.IS_HIERARCHICAL,

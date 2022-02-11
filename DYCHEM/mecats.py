@@ -127,7 +127,7 @@ class mecats:
         logger.info('Parameter settings:\n')
 
         self.parameter_set = {}
-        path = os.path.join('parameters', 'mecats.json')
+        path = os.path.join('parameters', 'dychem.json')
         self.parameter_set['mecats'] = utils.Params(path)
         with open(path) as f:
             mecats_params = json.load(f)
