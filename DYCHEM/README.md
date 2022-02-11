@@ -12,6 +12,7 @@ The following are related files of the program:
  - All figures shown in the paper are saved under `results`
  - All configurable parameters can be found under [`parameters`](./parameters)
  - Dataset used for experiment can be found under [`data`](./data)
+ - The variable name "MECATS" in the program also refers to `DYCHEM`
 
 ## Config
 To change the reconciliation method, modify RECON in [`dychem.json`](./parameters/dychem.json). Avaiable choices:
