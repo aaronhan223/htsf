@@ -1,9 +1,11 @@
 # Hierarchical Time Series Forecasting
 
-This repository contains implementations of hierarchical time series forecasting methods in the following papers:
+This repository contains implementations of hierarchical time series forecasting methods from the following papers:
 
-- [Simultaneously Reconciled Quantile Forecasting of Hierarchically Related Time Series](https://arxiv.org/pdf/2102.12612.pdf)
-- Dynamic Combination of Heterogeneous Experts for Hierarchical Time Series (in submission)
+- Baseline: [Optimal forecast reconciliation for hierarchical and grouped time series through trace minimization](https://robjhyndman.com/papers/MinT.pdf)
+- Baseline: [Regularized regression for hierarchical forecasting without unbiasedness condition](https://souhaib-bentaieb.com/papers/2019_kdd_hts_reg.pdf)
+- Baseline: [Simultaneously Reconciled Quantile Forecasting of Hierarchically Related Time Series](https://arxiv.org/pdf/2102.12612.pdf)
+- Dynamic Combination of Heterogeneous Experts for Hierarchical Time Series (in submission to ICDM'22)
 
 ## Running Instructions
 
