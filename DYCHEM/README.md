@@ -1,6 +1,6 @@
 # DYCHEM
 
-This repository is an implementation of the paper **Dynamic Combination of Heterogeneous Experts for Hierarchical Time Series** (in submission to ICDM'22).
+This repository is an implementation of the paper **Dynamic Combination of Heterogeneous Experts for Hierarchical Time Series** (in submission to ICASSP'23).
 
 ## Running Instructions
 Run DYCHEM using the following command:
