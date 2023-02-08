@@ -135,6 +135,6 @@ dmypy.json
 
 # folders
 /SHARQ/SHARQ_main/runs
-/MECATS/results
-/MECATS/save
-/MECATS-Accelerated/hiertsforecaster/save
+/DYCHEM/results
+/DYCHEM/save
+/DYCHEM-Accelerated/hiertsforecaster/save/10000000

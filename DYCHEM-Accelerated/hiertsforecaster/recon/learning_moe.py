@@ -19,7 +19,7 @@ import pickle
 import json
 from torch.utils.data.dataloader import DataLoader
 from collections import OrderedDict
-from fbprophet import Prophet
+from prophet import Prophet
 from pydlm import dlm, trend, seasonality
 import concurrent.futures
 from hiertsforecaster.models.deepar import Net

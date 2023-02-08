@@ -18,7 +18,7 @@ class MecatsParams:
     metric_mode = False
     path = './hiertsforecaster'
     unit_test = False
-    experts = ['auto_arima', 'average', 'fbprophet', 'pydlm']
+    experts = ['auto_arima', 'average', 'pydlm']
 
     valid_ratio = 0.1
     pred_step = 546
@@ -188,7 +188,8 @@ class GatingNetParams:
         return get_window_length()
     @property
     def batch_size(self):
-        return get_batch_size()
+        # return get_batch_size()
+        return 16
     @property
     def early_stop(self):
         return False # disable this in multi-gpu computing, as one process may terminate earlier to cause asynchronization

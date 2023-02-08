@@ -11,7 +11,7 @@ import pmdarima as pm
 from pmdarima.arima import StepwiseContext
 import pandas as pd
 from pydlm import dlm, trend, seasonality
-from fbprophet import Prophet
+from prophet import Prophet
 import concurrent.futures
 import os
 import torch

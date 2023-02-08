@@ -3,6 +3,7 @@ import pandas as pd
 from tqdm import tqdm
 from time import perf_counter
 import os
+import warnings
 import pdb
 
 
@@ -31,5 +32,7 @@ if __name__ == '__main__':
     np.savez('./hiertsforecaster/data/data_length.npz', length=data.shape[0])
     nodes = [[2], [2, 2], [8, 8, 8, 8]]
     realm_id = 10000000
-    main(data, nodes, realm_id)
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        main(data, nodes, realm_id)
     os.remove('./hiertsforecaster/data/data_length.npz')
